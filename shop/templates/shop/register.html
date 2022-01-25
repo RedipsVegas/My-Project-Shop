@@ -1,0 +1,20 @@
+{% extends "shop/base_generic.html" %}
+{% load static %}
+{% block content %}
+<title>{% block title %}Регистрация{% endblock %}</title>
+<div id="content" class="table">
+    <form action="" method="post">{% csrf_token %}
+        {% for field in form %}
+        <div class="testinput">
+            <label>{{ field.label }}</label>
+            <div>{{ field }}</div>
+            {% if field.errors %}
+                <p>{{ field.errors }}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+
+        <p><button class="submit-button">Зарегистрироваться</button></p>
+    </form>
+</div>
+{% endblock %}

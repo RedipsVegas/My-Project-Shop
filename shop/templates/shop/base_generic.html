@@ -1,0 +1,14 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="{% static "css/base.css" %}" rel="stylesheet">
+<div id="header">
+    <a href="{% url "shop:product_list" %}" class="logo">Amazing shop</a>
+</div>
+</head>
+<body>
+{% block content %}{% endblock %}
+</body>
+</html>

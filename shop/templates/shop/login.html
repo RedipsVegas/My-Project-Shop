@@ -1,0 +1,40 @@
+{% extends "shop/base_generic.html" %}
+{% load static %}
+{% block content %}
+<title>{% block title %}Авторизация{% endblock %}</title>
+    {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
+
+    {% if next %}
+        {% if user.is_authenticated %}
+            <p>Your account doesn't have access to this page. To proceed,
+                please login with an account that has access.</p>
+        {% else %}
+            <p>Please login to see this page.</p>
+        {% endif %}
+    {% endif %}
+<div class="margin">
+    <form method="post" action="{% url 'shop:login' %}">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <div class="testinput">
+                <div>{{ form.username.label_tag }}</div>
+                <div>{{ form.username }}</div>
+                </div>
+            </tr>
+            <tr>
+                <div class="testinput">
+                <div>{{ form.password.label_tag }}</div>
+                <div>{{ form.password }}</div>
+                </div>
+            </tr>
+        </table>
+        <p></p>
+        <input type="submit" class="submit-button" value="login"/>
+        <input type="hidden" name="next" value="{{ next }}"/>
+    </form>
+</div>
+
+{% endblock %}
